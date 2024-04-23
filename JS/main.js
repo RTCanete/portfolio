@@ -120,3 +120,69 @@ function closePopup() {
     var modal = document.getElementById("myModal");
     modal.classList.remove("show"); 
 }
+
+function handleFormSubmission(event) {
+    var modal = document.getElementById("myModal");
+    event.preventDefault();
+
+    var formData = new FormData(event.target);
+
+    var mobileNumber = formData.get('mobilenumber');
+    if (mobileNumber.length !== 11) {
+        alert("Please enter a 11-digit phone number.");
+        return; 
+    }
+
+    fetch(event.target.action, {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json()) 
+    .then(data => {
+        console.log(data);
+        
+        var modalContent = document.getElementById("modal-content");
+        modalContent.innerHTML = ""; 
+        
+        if (data.success) {
+            modalContent.innerHTML = "<p>Email sent successfully!</p>";
+        } else {
+            modalContent.innerHTML = "<p>Error! Something went wrong.</p>";
+        }
+        
+        modal.classList.add("show");
+
+        window.addEventListener("click", function (event) {
+            if (event.target === modal) {
+                closePopup();
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+var contactForm = document.getElementById('contactForm');
+contactForm.addEventListener('submit', handleFormSubmission);
+
+function validateForm() {
+    var fullname = document.getElementById("fullname").value.trim();
+    var email = document.getElementById("email").value.trim();
+    var mobilenumber = document.getElementById("mobilenumber").value.trim();
+    var emailsub = document.getElementById("emailsub").value.trim();
+    var message = document.getElementById("message").value.trim();
+
+    if (fullname === "" || email === "" || mobilenumber === "" || emailsub === "" || message === "") {
+        alert("Please fill in all fields.");
+        return false;
+    }
+
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+
+    return true;
+}

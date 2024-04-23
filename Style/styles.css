@@ -423,6 +423,7 @@ span {
 .modal.show {
     opacity: 1;
     visibility: visible;
+    height: auto;
 }
 
 /* Modal content */

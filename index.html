@@ -145,20 +145,20 @@
     <!-- CONTACT SECTION DESIGN -->
     <section class="contact" id="contact">
         <h2 class="heading">Contact <span>Me</span></h2>
-
-        <form action="https://api.web3forms.com/submit" method="POST">
+    
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" onsubmit="return validateForm()">
             <input type="hidden" name="access_key" value="9cf72607-2db7-4b98-8c42-af37bf0b9fe3">
             <div class="input-box">
-                <input type="text" name="fullname" placeholder="Full Name">
-                <input type="email" name="email" placeholder="Email Address">
+                <input type="text" name="fullname" id="fullname" placeholder="Full Name" required>
+                <input type="email" name="email" id="email" placeholder="Email Address" required>
             </div>
-
+    
             <div class="input-box">
-                <input type="number" name="mobilenumber" placeholder="Mobile Number">
-                <input type="text" name="emailsub" placeholder="Email Subject">
+                <input type="tel" name="mobilenumber" id="mobilenumber" placeholder="Mobile Number" required>
+                <input type="text" name="emailsub" id="emailsub" placeholder="Email Subject" required>
             </div>
-            <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
-
+            <textarea name="message" id="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+    
             <button type="submit" class="btn">
                 Send Message
                 <i class="fa-regular fa-paper-plane"></i>
