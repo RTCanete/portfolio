@@ -103,7 +103,7 @@ function showPopup(title) {
             </div>`;
             break;
         default:
-            modalContent.innerHTML = "<p>No content available.</p>";
+            modalContent.innerHTML = "<p>Loading........</p>";
     }
 
     modal.style.display = "block";
