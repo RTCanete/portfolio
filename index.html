@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="Style/styles.css">
+    <title>My Portfolio</title>
+</head>
+
+<body>
+    <!-- HEADER DESIGN -->
+    <header class="header">
+        <a href="#home" class="logo">Portfolio</a>
+
+        <i class="fa-solid fa-bars" id='menu-icon'></i>
+
+        <nav class="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- HOME SECTION DESIGN -->
+    <section class="home" id="home">
+        <div class="home-content">
+            <h3>Hi, I'm</h3>
+            <h1>Rico Cañete</h1>
+            <h3>And I'm a <span class="multiple-text"></span></h3>
+            <p>As an experienced web developer, I bring a solid skill set to the table, specializing in frontend
+                development with expertise in JavaScript/Typescript and ReactJS. While I may not claim superhero status,
+                I approach
+                every project with dedication and precision. Crafting user-friendly websites is my forte, and I thrive
+                on the challenge of solving complex coding puzzles. Let's collaborate and bring your digital vision to
+                life! 🚀💻</p>
+
+            <div class="social-media">
+                <a href="https://www.facebook.com/Rico.Canete3161" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/rico-canete05/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <a href="https://drive.google.com/uc?export=download&id=1M0Zc4OlL_qFEmveQ23pg3q9j_jkPKXDI" class="btn"
+                download="Cañete_CV">Download CV</a>
+        </div>
+
+        <div class="home-img">
+            <img src="img/profiledp-nobg.png" alt="">
+        </div>
+    </section>
+
+
+    <!-- ABOUT SECTION DESIGN -->
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="img/aboutpic-nobg.png" alt="">
+        </div>
+
+        <div class="about-content">
+            <h2 class="heading">About <span>Me</span></h2>
+            <h3>Frontend Developer</h3>
+            <p>Hey there! I'm Rico Cañete, and I'm all about learning and creating cool stuff. I got into web
+                development because, there's always something new to learn and endless things to build! My journey
+                began back in 2022 when I dove headfirst into JavaScript, and boy, did I get hooked! </p>
+
+            <p>Here are some of the cool tech I've been working with:</p>
+            <ul>
+                <li>JavaScript</li>
+                <li>TypeScript</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>ReactJS</li>
+                <li>Jest</li>
+            </ul>
+
+            <p>Let's code some awesomeness together! 🚀</p>
+            <a class="btn" onclick="showPopup('ABOUT ME')">Read More</a>
+        </div>
+    </section>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content scroll-container">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2 class="modal-title"></h2>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- SERVICES SECTION DESIGN -->
+    <section class="services" id="services">
+        <h2 class="heading">My Work <span>Experiences</span></h2>
+
+        <div class="services-container">
+            <div class="services-box">
+                <i class="fa-solid fa-code"></i>
+                <h3>SOLUTIONS DEVELOPER</h3>
+                <p>April 18, 2022 – March 27, 2024</p>
+                <a class="btn" onclick="showPopup('SOLUTIONS DEVELOPER')">Read More</a>
+            </div>
+
+            <div class="services-box">
+                <i class="fa-solid fa-desktop"></i>
+                <h3>JR. TECHNICAL SUPPORT ENGINEER</h3>
+                <p>July 05, 2021 - March 2022</p>
+                <a class="btn" onclick="showPopup('JR. TECHNICAL SUPPORT ENGINEER')">Read More</a>
+            </div>
+
+            <div class="services-box">
+                <i class="fa-solid fa-phone"></i>
+                <h3>TECHNICAL SUPPORT</h3>
+                <p>November 2020 - January 2021</p>
+                <a class="btn" onclick="showPopup('TECHNICAL SUPPORT')">Read More</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- PORTFOLIO SECTION DESIGN -->
+    <section class="portfolio" id="portfolio">
+        <h2 class="heading">Latest <span>Projects</span></h2>
+
+        <div class="portfolio-container">
+            <div class="portfolio-box">
+                <img src="img/1.png" alt="">
+                <div class="portfolio-layer">
+                    <h4>The Mandatory Provident Fund</h4>
+                    <!-- <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p> -->
+                    <i class="fa-solid fa-up-right-from-square" onclick="showPopup('eMPF')"></i>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION DESIGN -->
+    <section class="contact" id="contact">
+        <h2 class="heading">Contact <span>Me</span></h2>
+
+        <form action="#contact">
+            <div class="input-box">
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email Address">
+            </div>
+
+            <div class="input-box">
+                <input type="number" placeholder="Mobile Number">
+                <input type="text" placeholder="Email Subject">
+            </div>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>
+            <input type="submit" value="Send Message" class="btn" onclick="showPopup('SAMPLE ONLY')">
+        </form>
+    </section>
+
+
+    <!-- FOOTER SECTION DESIGN -->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2024 by Rico Cañete | All Rights Reserved.</p>
+        </div>
+
+        <div class="footer-iconTop">
+            <a href="#home"><i class="fa-solid fa-angle-up"></i></a>
+        </div>
+    </footer>
+
+    <!-- SCROLL REVEAL JS -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- TYPED JS -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+    <!-- MAIN JS -->
+    <script src="JS/main.js"></script>
+</body>
+
+</html>
