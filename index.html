@@ -142,6 +142,16 @@
         </div>
     </section>
 
+    <script>
+        function validateAndShowPopup(event) {
+            if (validateForm()) {
+                showPopup('');
+            } else {
+                event.preventDefault(); // Prevent default form submission
+            }
+        }
+    </script>
+
     <!-- CONTACT SECTION DESIGN -->
     <section class="contact" id="contact">
         <h2 class="heading">Contact <span>Me</span></h2>
@@ -159,10 +169,11 @@
             </div>
             <textarea name="message" id="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
     
-            <button type="submit" class="btn" onclick="showPopup('STATUS:')">
+            <button type="submit" class="btn" onclick="validateAndShowPopup(event)">
                 Send Message
                 <i class="fa-regular fa-paper-plane"></i>
             </button>
+            
         </form>
     </section>
 

@@ -1,20 +1,20 @@
-let menuIcon = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar');
+const menuIcon = document.querySelector('#menu-icon');
+const navbar = document.querySelector('.navbar');
 
 menuIcon.addEventListener('click', () => {
     menuIcon.classList.toggle('fa-xmark');
     navbar.classList.toggle('active');
 });
 
-let sections = document.querySelectorAll('section');
-let navLinks = document.querySelectorAll('header nav a');
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('header nav a');
 
 window.onscroll = () => {
     sections.forEach(sec => {
-        let top = window.scrollY;
-        let offset = sec.offsetTop - 150;
-        let height = sec.offsetHeight;
-        let id = sec.getAttribute('id');
+        const top = window.scrollY;
+        const offset = sec.offsetTop - 200;
+        const height = sec.offsetHeight;
+        const id = sec.getAttribute('id');
 
         if (top >= offset && top < offset + height) {
             navLinks.forEach(link => {
@@ -24,12 +24,13 @@ window.onscroll = () => {
         };
     });
 
-    let header = document.querySelector('header');
+    const header = document.querySelector('header');
     header.classList.toggle('sticky', window.scrollY > 100);
 
     menuIcon.classList.remove('fa-xmark');
     navbar.classList.remove('active');
 };
+
 
 ScrollReveal({
     distance: '80px',
@@ -51,11 +52,11 @@ const typed = new Typed('.multiple-text', {
 });
 
 function showPopup(title) {
-    var modal = document.getElementById("myModal");
-    var modalTitle = modal.querySelector(".modal-title");
-    var modalContent = modal.querySelector("#modal-content");
+    const modal = document.getElementById("myModal");
+    const modalTitle = modal.querySelector(".modal-title");
+    const modalContent = modal.querySelector("#modal-content");
 
-    modalTitle.textContent = title;
+    modalTitle.textContent = title || "";
     switch (title) {
         case "ABOUT ME":
             modalContent.innerHTML = `
@@ -117,21 +118,16 @@ function showPopup(title) {
 }
 
 function closePopup() {
-    var modal = document.getElementById("myModal");
+    const modal = document.getElementById("myModal");
     modal.classList.remove("show"); 
 }
 
+
 function handleFormSubmission(event) {
-    var modal = document.getElementById("myModal");
+    const modal = document.getElementById("myModal");
     event.preventDefault();
 
-    var formData = new FormData(event.target);
-
-    var mobileNumber = formData.get('mobilenumber');
-    if (mobileNumber.length !== 11) {
-        alert("Please enter a 11-digit phone number.");
-        return; 
-    }
+    const formData = new FormData(event.target);
 
     fetch(event.target.action, {
         method: 'POST',
@@ -141,13 +137,13 @@ function handleFormSubmission(event) {
     .then(data => {
         console.log(data);
         
-        var modalContent = document.getElementById("modal-content");
+        const modalContent = document.getElementById("modal-content");
         modalContent.innerHTML = ""; 
         
         if (data.success) {
             modalContent.innerHTML = "<p>Email sent successfully!</p>";
         } else {
-            modalContent.innerHTML = "<p>Error! Something went wrong.</p>";
+            modalContent.innerHTML = "<p>Error! " + data.error + "</p>";
         }
         
         modal.classList.add("show");
@@ -160,27 +156,41 @@ function handleFormSubmission(event) {
     })
     .catch(error => {
         console.error('Error:', error);
+        const modalContent = document.getElementById("modal-content");
+        modalContent.innerHTML = "<p>An unexpected error occurred. Please try again later.</p>"; 
+        modal.classList.add("show");
     });
 }
 
-var contactForm = document.getElementById('contactForm');
-contactForm.addEventListener('submit', handleFormSubmission);
+const contactForm = document.getElementById('contactForm');
+contactForm.addEventListener('submit', function(event) {
+    if (!validateForm()) {
+        event.preventDefault(); // Prevent form submission if validation fails
+    } else {
+        handleFormSubmission(event); // Proceed with form submission if validation passes
+    }
+});
 
 function validateForm() {
-    var fullname = document.getElementById("fullname").value.trim();
-    var email = document.getElementById("email").value.trim();
-    var mobilenumber = document.getElementById("mobilenumber").value.trim();
-    var emailsub = document.getElementById("emailsub").value.trim();
-    var message = document.getElementById("message").value.trim();
+    const fullname = document.getElementById("fullname").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const mobilenumber = document.getElementById("mobilenumber").value.trim();
+    const emailsub = document.getElementById("emailsub").value.trim();
+    const message = document.getElementById("message").value.trim();
 
     if (fullname === "" || email === "" || mobilenumber === "" || emailsub === "" || message === "") {
         alert("Please fill in all fields.");
         return false;
     }
 
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
         alert("Please enter a valid email address.");
+        return false;
+    }
+
+    if (mobilenumber.length !== 11) {
+        alert("Please enter a 11-digit phone number.");
         return false;
     }
 
