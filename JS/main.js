@@ -165,11 +165,15 @@ function handleFormSubmission(event) {
 const contactForm = document.getElementById('contactForm');
 contactForm.addEventListener('submit', function(event) {
     if (!validateForm()) {
-        event.preventDefault(); // Prevent form submission if validation fails
+        event.preventDefault(); // Submit if fails
     } else {
-        handleFormSubmission(event); // Proceed with form submission if validation passes
+        handleFormSubmission(event); // Submit if success
     }
 });
+
+function clearForm() {
+    document.getElementById("contactForm").reset();
+}
 
 function validateForm() {
     const fullname = document.getElementById("fullname").value.trim();
